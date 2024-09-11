@@ -2,24 +2,21 @@
 import java.time.LocalDate;
 public class Libro {
     private String titulo;
-    private String autor;
+    private Autor autor;
     private int añoPublicacion;
     private String isbn;
+    private boolean esPrestado;
 
   
-    public Libro() {
-        this.titulo = "";
-        this.autor = "";
-        this.añoPublicacion = 0;
-        this.isbn = "";
-    }
+    
 
     
-    public Libro(String titulo, String autor, int añoPublicacion, String isbn) {
+    public Libro(String titulo, Autor autor, int añoPublicacion, String isbn, boolean esPrestado) {
         this.titulo = titulo;
         this.autor = autor;
         this.añoPublicacion = añoPublicacion;
         this.isbn = isbn;
+        esPrestado=false;
     }
 
     
@@ -30,7 +27,7 @@ public class Libro {
         return titulo;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
@@ -42,18 +39,19 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public void mostrarInformacion() {
-        System.out.println("Título: " + titulo);
-        System.out.println("Autor: " + autor);
-        System.out.println("Año de Publicación: " + añoPublicacion);
-        System.out.println("ISBN: " + isbn);
-    }
-
     public boolean esAntiguo() {
         int añoActual = LocalDate.now().getYear();
         return (añoActual - añoPublicacion) > 20;
     }
-
+    public boolean setPrestado(){
+        this.esPrestado=esPrestado;
+        return esPrestado;
+    }
+    public boolean getPrestado(){
+        return esPrestado;
+    }
+    public String mostrarInformacion() {
+       return titulo + autor+ String.valueOf(añoPublicacion) + isbn;
+    }
   
 }
-
